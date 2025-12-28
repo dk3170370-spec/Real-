@@ -1,51 +1,111 @@
-# Real-
-&lt;!DOCTYPE html> &lt;html
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Simple Website</title>
+  <title>Color Prediction App</title>
 
   <style>
-    body {
+    body{
       font-family: Arial;
-      text-align: center;
-      background: #f2f2f2;
-      margin: 0;
-      padding: 0;
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      padding:20px;
     }
-    header {
-      background: #4CAF50;
-      color: white;
-      padding: 20px;
-      font-size: 24px;
+
+    .card{
+      background:#020617;
+      padding:20px;
+      border-radius:14px;
+      max-width:400px;
+      margin:auto;
+      box-shadow:0 0 18px rgba(255,255,255,.08);
     }
-    .container {
-      margin-top: 30px;
+
+    .color-box{
+      width:120px;
+      height:120px;
+      border-radius:12px;
+      margin:15px auto;
+      border:2px solid white;
     }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
+
+    button{
+      padding:12px 18px;
+      border-radius:10px;
+      border:none;
+      margin:6px;
+      font-size:15px;
+      cursor:pointer;
+    }
+
+    .green{background:#22c55e}
+    .red{background:#ef4444}
+    .blue{background:#3b82f6}
+    .yellow{background:#eab308}
+
+    .result{
+      margin-top:12px;
+      font-size:18px;
+      font-weight:bold;
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    Welcome to My Simple Website
-  </header>
+  <h2>🎨 Color Prediction Game</h2>
 
-  <div class="container">
-    <h2>Namaste 👋</h2>
-    <p>Yeh ek simple HTML website ka demo page hai.</p>
+  <div class="रंग",>
 
-    <button onclick="alert('Thank you for visiting!')">
-      Click Me
-    </button>
+    <p>नीचे दिए गए रंग का अनुमान लगाइए</p>
+
+    <div id="colorBox" class="color-box"></div>
+
+    <p>अपना Prediction चुनें 👇</p>
+
+    <div>
+      <button onclick="predict('red')" class="red">Red</button>
+      <button onclick="predict('green')" class="green">Green</button>
+      <button onclick="predict('blue')" class="blue">Blue</button>
+      <button onclick="predict('yellow')" class="yellow">Yellow</button>
+    </div>
+
+    <p class="result" id="resultText"></p>
+    <p>Round: <span id="round">0</span></p>
+
+    <button onclick="newRound()">Next Round</button>
+
   </div>
+
+<script>
+
+let colors = ["red","green","blue","yellow"];
+let generatedColor = "";
+let round = 0;
+
+function newRound(){
+    round++;
+    document.getElementById("round").innerText = round;
+
+    generatedColor = colors[Math.floor(Math.random()*colors.length)];
+    document.getElementById("colorBox").style.background = generatedColor;
+
+    document.getElementById("resultText").innerText = "";
+}
+
+function predict(userColor){
+
+    if(userColor === generatedColor){
+        document.getElementById("resultText").innerText = "🎉 You Win!";
+        document.getElementById("resultText").style.color = "#22c55e"
+        document.getElementById("resultText").style.color = "#ef4444";
+    }
+}
+
+newRound();
+
+</script>
 
 </body>
 </html>
